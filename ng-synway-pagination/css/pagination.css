@@ -1,0 +1,33 @@
+/*
+* @Author: Marte
+* @Date:   2017-09-22 14:00:19
+* @Last Modified by:   Marte
+* @Last Modified time: 2017-09-22 15:40:21
+*/
+.pagination-panel{
+    overflow: hidden;
+}
+.pagination-panel .pagination{
+    float: right;
+    margin: 0px;
+}
+.pagination-panel .pagination>li{
+    cursor: pointer;
+}
+.pagination-text-panel{
+    font-family: 'Microsoft YaHei';
+    font-size: 12px;
+    float:left;
+    overflow:hidden;
+}
+.pagination-text{
+    vertical-align: middle;
+}
+.pagination-input{
+    font-family:inherit;
+    font-size:inherit;
+    width:50px;
+    display: inline-block;
+    vertical-align: middle;
+    text-align: center;
+}

@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="app">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>表头冻结</title>
+    <link rel="stylesheet" href="css/bootstrap.min.css" />
+    <style>
+        .content {
+            width: 1000px;
+            height: 500px;
+            margin: 0 auto;
+            padding: 10px;
+            margin-top: 100px;
+        }
+        .temp-tbl-head {
+            background: #fff;
+        }
+    </style>
+</head>
+<body ng-controller="freezeTable">
+    <div class="content">
+        <div class="table-panel" style="overflow:auto; position:relative; height:calc(100% - 90px)">
+            <div style='overflow:auto;height:100%;'>
+                <table table-header-freeze table-data="products" class=" table table-bordered table-hover text-center"
+                 style="margin-top: 0px;margin-bottom:0px;">
+                    <thead>
+                        <tr>
+                            <th class="text-center">项目编号</th>
+                            <th class="text-center">项目名称</th>
+                            <th class="text-center">完成单位</th>
+                            <th class="text-center">省份</th>
+                            <th class="text-center">相关手段</th>
+
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr ng-repeat="item in products">
+                            <td>{{item.code}}</td>
+                            <td>{{item.objName}}</td>
+                            <td>{{item.unit}}</td>
+                            <td>{{item.province}}</td>
+                            <td>{{item.method}}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</body>
+<script src="js/jquery.min.js"></script>
+<script src="js/angular.js"></script>
+<script src="js/tableHeaderFreeze.js"></script>
+<script>
+    var app = angular.module("app", ['synway.tableHeaderFreeze']);
+    app.controller('freezeTable', function ($scope, $http, $location) {
+        $scope.get = function () {
+            $http({
+                url: 'data/tableData.json',
+                method: 'get'
+            }).success(function (data) {
+                $scope.products = data.data;
+                console.log($scope.products)
+            });
+        };
+        $scope.get();
+    })
+</script>
+</html>

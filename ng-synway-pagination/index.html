@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>angular分页</title>
+		<link rel="stylesheet" href="css/bootstrap.css" />
+		<link rel="stylesheet" href="css/pagination.css" />
+		<script type="text/javascript" src="js/angular.js"></script>
+		<script type="text/javascript" src="js/pagination.js"></script>
+
+		<style type="text/css">
+
+		</style>
+	</head>
+	<body ng-app="pageApp">
+		<div ng-controller="pageController">
+
+			<div ng-if="synPage.totalItems" style="margin: 100px;" load-fun="loadData" synway-pagination pg="synPage"></div>
+			<!-- 当列表内容动态添加或删除时需重新计算分页总数 -->
+			<div class="btn btn-default change-btn" ng-click="changePageList()">测试</div>
+		</div>
+	</body>
+	<script type="text/javascript">
+		angular.module("pageApp",["synway.pagination"])
+			.controller("pageController",function($scope,synwayPage){
+				$scope.synPage={
+					currentPage : 1,                //当前显示页
+					totalItems : 120,               //内容总共多少条
+					itemsPerPage : 10,              //每页显示几条
+					middleLength : 5				//中间数量
+				}
+
+				$scope.loadData=function(option){
+					console.log(option);
+					console.log($scope.synPage.currentPage);
+				}
+
+				$scope.changePageList=function(){
+					$scope.synPage.totalItems=0;
+				}
+			})
+	</script>
+</html>
